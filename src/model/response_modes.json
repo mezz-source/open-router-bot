@@ -1,0 +1,19 @@
+{
+  "modes": [
+    {
+      "name": "direct",
+      "weight": 50,
+      "instruction": "Respond directly (short response, no jokes)"
+    },
+    {
+      "name": "derail",
+      "weight": 40,
+      "instruction": "Derail (misintepret/be confused)"
+    },
+    {
+      "name": "lorebuild",
+      "weight": 10,
+      "instruction": "Lorebuild"
+    }
+  ]
+}
