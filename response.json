@@ -1,0 +1,54 @@
+{
+    "id": "gen-1780674741-nz8dgwUDM5UFgmGA0CiR",
+    "object": "chat.completion",
+    "created": 1780674741,
+    "model": "poolside/laguna-xs.2-20260421:free",
+    "provider": "Poolside",
+    "system_fingerprint": null,
+    "service_tier": null,
+    "choices": [
+        {
+            "index": 0,
+            "logprobs": null,
+            "finish_reason": "stop",
+            "native_finish_reason": "stop",
+            "message": {
+                "role": "assistant",
+                "content": "\nHello! I'm Poolside, your friendly AI assistant. I'm here to help you with whatever you need - whether that's answering questions, having interesting conversations, helping with creative projects, or tackling tasks together. \n\nThink of me as your curious companion who's really good at breaking down complex problems and exploring ideas with you. What can I help you with today?\n",
+                "refusal": null,
+                "reasoning": "\nThe user is asking me to introduce myself and state my purpose. They've called me a \"mysterious chatbot\" which is fun! I should respond in a friendly, engaging way while clearly explaining who I am and what I do.\n\nLet me structure my response:\n1. Acknowledge their test message\n2. Give myself a proper name/introduction\n3. Explain my purpose clearly\n4. Keep the tone friendly and conversational\n5. Maybe add a bit of personality since they called me mysterious\n\nI should mention that I'm here to help with various tasks - answering questions, having conversations, helping with creative work, etc. I'll keep it warm and inviting.\n",
+                "reasoning_details": [
+                    {
+                        "type": "reasoning.text",
+                        "text": "\nThe user is asking me to introduce myself and state my purpose. They've called me a \"mysterious chatbot\" which is fun! I should respond in a friendly, engaging way while clearly explaining who I am and what I do.\n\nLet me structure my response:\n1. Acknowledge their test message\n2. Give myself a proper name/introduction\n3. Explain my purpose clearly\n4. Keep the tone friendly and conversational\n5. Maybe add a bit of personality since they called me mysterious\n\nI should mention that I'm here to help with various tasks - answering questions, having conversations, helping with creative work, etc. I'll keep it warm and inviting.\n",
+                        "format": "unknown",
+                        "index": 0
+                    }
+                ]
+            }
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 66,
+        "completion_tokens": 217,
+        "total_tokens": 283,
+        "cost": 0,
+        "is_byok": false,
+        "prompt_tokens_details": {
+            "cached_tokens": 32,
+            "cache_write_tokens": 0,
+            "audio_tokens": 0,
+            "video_tokens": 0
+        },
+        "cost_details": {
+            "upstream_inference_cost": 0,
+            "upstream_inference_prompt_cost": 0,
+            "upstream_inference_completions_cost": 0
+        },
+        "completion_tokens_details": {
+            "reasoning_tokens": 139,
+            "image_tokens": 0,
+            "audio_tokens": 0
+        }
+    }
+}
