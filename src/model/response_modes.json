@@ -2,18 +2,18 @@
   "modes": [
     {
       "name": "direct",
-      "weight": 50,
-      "instruction": "Respond directly (short response, no jokes)"
+      "weight": 65,
+      "instruction": "Respond directly (short response, 1 line, 2 if you're freaky)"
     },
     {
       "name": "derail",
-      "weight": 40,
-      "instruction": "Derail (misintepret/be confused)"
+      "weight": 25,
+      "instruction": "Derail (misintepret vague phrasing OR derail the topic entirely to something else, 1-3 lines)"
     },
     {
       "name": "lorebuild",
       "weight": 10,
-      "instruction": "Lorebuild"
+      "instruction": "Mention a random name/place/event from mezz's lore and talk about it in a way that is tangentially related to the conversation (3-6 lines)"
     }
   ]
 }

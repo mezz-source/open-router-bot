@@ -1,0 +1,41 @@
+{
+    "schema_version": 2,
+    "collection": "memories",
+    "records": [
+        {
+            "id": "memory1",
+            "kind": "episodic",
+            "summary": "Shelly and I planned to destroy walmart",
+            "content": "Shelly and I planned to destroy walmart",
+            "topics": ["walmart", "shelly", "plans"],
+            "entities": [
+                {
+                    "name": "Shelly",
+                    "type": "person"
+                },
+                {
+                    "name": "Walmart",
+                    "type": "organization"
+                }
+            ],
+            "timestamps": {
+                "occurred_at": "2024-06-01T12:00:00Z",
+                "created_at": "2024-06-01T12:00:00Z",
+                "updated_at": "2024-06-01T12:00:00Z",
+                "last_accessed_at": null
+            },
+            "retrieval_text": "Shelly and I planned to destroy Walmart. Topics: walmart, shelly, plans. Entities: Shelly, Walmart.",
+            "retrieval_hints": {
+                "keywords": ["shelly", "walmart", "plan", "destroy"],
+                "aliases": ["Shelly", "Walmart"]
+            },
+            "importance": 0.9,
+            "confidence": 0.75,
+            "source": {
+                "kind": "user",
+                "channel": null,
+                "message_id": null
+            }
+        }
+    ]
+}

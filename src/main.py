@@ -1,3 +1,5 @@
+import asyncio
+
 DEPLOYED = False
 
 if not DEPLOYED:
@@ -5,5 +7,5 @@ if not DEPLOYED:
     load_dotenv()
 
 if __name__ == "__main__":
-    import bot.chat_bot as chat_bot
-    chat_bot.main()
+    import bot.discord_bot as discord_bot
+    asyncio.run(discord_bot.main())

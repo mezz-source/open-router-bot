@@ -1,0 +1,21 @@
+{
+    // the bot will reply to topics with these phrases
+    "names": ["mezz", "mezz_inc", "mezzy", "mezzicus"],
+    "favorite_topics": ["america", "gun", "kill npcs", "roblox"],
+    "target_channels": ["general", "off-topic"],
+
+    // modify the bot's behavior
+    "free_target": false, // can attack any channel with permissions
+    "respond_to_dms": true, // whether the bot should respond to DMs
+    "memories": true, // whether the bot saves memories
+    "relationships": true, // whether the bot tracks relationships
+
+    // interest system parameters and how long they stay invested
+    "max_interest": 150,
+    "engage_threshold": 50, // how much interest is needed to engage in a topic
+    "interest_retention_decay": 1, // how much each block without pings/replies/topics decays interest
+    "interest_ping_add": 100, // getting pinged
+    "interest_reply_add": 100, // replying to messages
+    "interest_topic_add": 40, // discussing topics
+    "interest_name_add": 60 // having their name mentioned
+}

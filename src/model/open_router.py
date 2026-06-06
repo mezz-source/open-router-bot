@@ -26,7 +26,7 @@ class OpenRouterLMM():
                     "role": "system",
                     "content": self.prompt
                 },
-                {"role": "user", "content": message_str}
+                {"role": "user", "content": f"{message_str}\nEnter response as mezz:"}
             ],
             "stream": self.stream_response,
         }

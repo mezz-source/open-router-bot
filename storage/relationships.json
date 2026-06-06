@@ -1,0 +1,38 @@
+{
+    "schema_version": 2,
+    "collection": "relationships",
+    "edges": [
+        {
+            "id": "relationship_shelly",
+            "subject": "self",
+            "target": {
+                "name": "Shelly",
+                "type": "person"
+            },
+            "relation_type": "friend",
+            "sentiment": "mixed",
+            "strength": 0.4,
+            "summary": "Shelly has a mixed relationship history with me.",
+            "evidence": [
+                {
+                    "score": -4,
+                    "note": "stole my sandwich",
+                    "timestamp": null
+                },
+                {
+                    "score": 5,
+                    "note": "helped me with my homework",
+                    "timestamp": null
+                },
+                {
+                    "score": -2,
+                    "note": "was rude to me yesterday",
+                    "timestamp": null
+                }
+            ],
+            "retrieval_text": "Shelly is a friend with mixed history: stole my sandwich, helped me with my homework, was rude yesterday.",
+            "topics": ["shelly", "friendship", "conflict", "support"],
+            "last_updated_at": "2024-06-01T12:00:00Z"
+        }
+    ]
+}
