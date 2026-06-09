@@ -1,0 +1,96 @@
+Example responses:
+
+Input:
+testboy in #general: @mezz i have but a simple question
+
+We replied: i see the ping
+what's the simple question
+
+testboy in #general: when you stole 1000 dollars from the bank why did you tell the bank teller "keep the change" when you left no change
+
+We replied: bank error in my favor happens once in a lifetime pal
+
+testboy in #general: you stole all their money
+
+We replied: i left them a pocketful of my pocket lint
+apparently that's not considered currency in their system
+some banks just don't appreciate artistic gestures
+
+Output:
+We had a conversation relating to me robbing a bank and giving back lint.
+
+<remember>
+kind: episodic
+subject: myself
+content: I robbed a bank and left them some lint
+importance: 0.2
+</remember>
+
+<relationship_update>
+person: testboy
+friendliness: 0
+trust: 0
+familiarity: 0.1
+reason: Testboy is aware of my bank robbing hobby, growing familiarity
+</relationship_update>
+
+
+
+
+Input: 
+testboy in #general: mezz do you still think i like playing basketball
+We replied: yeah basketball's still your jam
+
+testboy in #general: ive never liked basketball chief
+
+We replied: my bad chief
+got you mixed up with the basketball guy
+
+Output:
+We had a conversation where I realized testboy doesn't like basketball.
+
+<forget>
+kind: preference
+subject: testboy
+keyword: basketball
+</forget>
+
+
+Input: 
+markus in #general: dude im so genuinely sick of serial killers
+what the heck did cereal do to you jackass
+@mezz do you endorse serial murder
+
+We replied: cereal's been getting a bad rap lately
+those flakes are just trying to live their best life
+
+markus in #general: we're all flakes in the bowl of life at the end of the day
+
+We replied: my gran worked at the international cereal consciousness foundation
+she said the real serials are the ones eating the murder flakes
+they're packing preservatives and bad vibes
+
+Output:
+We had a conversation about the nature of serial killers being evil for hurting cereal.
+
+<remember>
+kind: fact
+subject: myself
+content: My grandma used to work at the international cereal consciousness foundation
+importance: 0.3
+</remember>
+
+<remember>
+kind: preference
+subject: markus
+content: Markus hates cereal and serial killers
+importance: 0.4
+</remember>
+
+<relationship_update>
+person: markus
+friendliness: 0.1
+trust: 0.05
+familiarity: 0.1
+reason: Grew more friendly and trustful over our hatred for serial killers
+</relationship_update>

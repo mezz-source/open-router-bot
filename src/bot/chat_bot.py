@@ -7,7 +7,7 @@ import json
 import discord
 
 from model.interest import get_interest_delta, load_interest_config, get_threshold_for_interest_level
-from model.ollama import OllamaRouter
+from model.ollama import OllamaModel
 from model.open_router import OpenRouterLMM
 from model.response_modes import build_response_mode_prompt, choose_response_mode, load_response_modes
 
@@ -25,18 +25,11 @@ bot = None
 tracked_channels: dict[int, ChannelTracker] = {}
 user_ids_typing: list[int] = []
 
-# doesnt sound like me at all
-# chat_model = OllamaRouter(
-#     model="llama3-chatqa:8b",
-#     prompt_dir=MODEL_PROMPTS_DIR / "chat_model",
-#     stream_response=True
-# )
-
-# summary_model = OllamaRouter(
-#     model="qwen2.5:0.5b",
-#     prompt_dir=MODEL_PROMPTS_DIR / "summary_model",
-#     stream_response=False
-# )
+reflection_model = OllamaModel(
+    model="qwen2.5:0.5b",
+    prompt_dir=MODEL_PROMPTS_DIR / "reflection_model",
+    stream_response=False
+)
 
 chat_model = OpenRouterLMM(
     model="glm-4.5-air:free",
@@ -73,7 +66,6 @@ def get_line_typing_delay(line: str) -> float:
 
     return min(6.0, base_delay + per_character_delay + jitter)
 
-
 def get_author_name(message) -> str:
     author_name = message.author.display_name or message.author.name
 
@@ -82,15 +74,12 @@ def get_author_name(message) -> str:
 
     return author_name
 
-
 def build_full_prompt(mode) -> str:
     response_mode_prompt = build_response_mode_prompt([mode])
 
     return (
         f"response modes:\n{response_mode_prompt}\n\n"
-        f"selected mode:\n{mode.instruction}"
     )
-
 
 def get_channel_tracker(message) -> ChannelTracker:
     channel_id = ChannelTracker.resolve_context_id(message)
@@ -125,7 +114,6 @@ async def send_line_with_typing(message, line: str) -> None:
         await asyncio.sleep(get_line_typing_delay(line))
         await message.channel.send(line)
         await asyncio.sleep(random.uniform(0.1, 1.3))
-
 
 async def stream_response_lines_ollama(message, response) -> None:
     pending_line = ""
@@ -200,11 +188,9 @@ async def stream_response_lines_openrouter(message, response) -> None:
 
         await send_line_with_typing(message, content)
 
-
 async def summarize_conversation(conversation: str) -> str:
     response = await summary_model.get_response(conversation)
     return response.json().get("choices", [{}])[0].get("message", {}).get("content", "")
-
 
 async def respond_to_message(message_string: str, message: discord.Message, channel_tracker: ChannelTracker) -> None:
     if not channel_tracker.start_response():
@@ -253,6 +239,12 @@ async def handle_command(message, command: str) -> None:
         summary = await summarize_conversation(conversation)
         channel_tracker.set_summary(summary)
         await message.channel.send(f"Conversation summary:\n{summary}")
+    elif command == "reflect":
+        channel_tracker = get_channel_tracker(message)
+        await message.channel.send(f"-# generating reflection for {channel_tracker.id}, please hold...")
+        conversation = f"{channel_tracker.long_term_memory}\n{channel_tracker.jar}"
+        reflection = await reflection_model.get_response(conversation)
+        await message.channel.send(f"Conversation reflection:\n{reflection}")
     elif command in ("empty", "clear"):
         channel_tracker = get_channel_tracker(message)
         channel_tracker.clear_all_memory()
@@ -276,6 +268,15 @@ async def handle_message(message, bot_user=None) -> None:
 async def handle_typing_start(channel, user) -> None:
     if user.id not in user_ids_typing:
         user_ids_typing.append(user.id)
+
+async def update_reflection(channel_tracker): 
+    conversation = f"{channel_tracker.long_term_memory}\n{channel_tracker.jar}"
+    reflection = await reflection_model.get_response(conversation)
+    if channel_tracker.channel_object is not None:
+        try:
+            await channel_tracker.channel_object.send(f"-# silently updated conversation summary:\n{reflection}")
+        except Exception as e:
+            print(f"Error sending summary update message to channel {channel_tracker.id}: {e}")
 
 async def update_channel_summary(channel_tracker: ChannelTracker) -> None:
     if channel_tracker.messages_since_last_summary <= 30:

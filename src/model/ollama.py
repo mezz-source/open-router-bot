@@ -2,14 +2,14 @@ from pathlib import Path
 from ollama import chat
 from model.prompt_compiler import compile_prompt
 
-class OllamaRouter():
+class OllamaModel():
     def __init__(self, prompt_dir: Path | None = None, stream_response: bool = True, model: str = "qwen2.5:3b"):
         self.model = model
         self.prompt = compile_prompt(prompt_dir) if prompt_dir is not None else compile_prompt()
         self.stream_response = stream_response
 
     async def get_response(self, message_str: str):
-        stream = chat(
+        response = chat(
             model=self.model,
             messages=[
                 {'role': 'system', 'content': self.prompt},
@@ -17,8 +17,11 @@ class OllamaRouter():
             ],
             stream=self.stream_response
         )
-        
-        return stream
+
+        if self.stream_response:
+            return response
+        else:
+            return response.message.content # type: ignore
 
 """
 from ollama import chat
